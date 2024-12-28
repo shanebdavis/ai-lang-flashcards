@@ -10,7 +10,7 @@ const FlashCard = ({ word, isActive, response, onResponse }) => {
   return (
     <div className={`flash-card ${isActive ? 'active' : ''}`}>
       <h2>{word.spanish}</h2>
-      {!isActive && <p className="english">{word.english}</p>}
+      <p className={`english ${isActive ? 'hidden' : ''}`}>{word.english}</p>
       <div className="response-buttons">
         <button 
           className={`response-button si ${response === true ? 'selected' : ''}`}
