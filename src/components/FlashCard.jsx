@@ -1,4 +1,4 @@
-const FlashCard = ({ word, isActive, response, onResponse }) => {
+const FlashCard = ({ word, isActive, response, onResponse, style }) => {
   const handleResponse = value => {
     if (isActive) {
       onResponse(word.id, value)
@@ -8,12 +8,17 @@ const FlashCard = ({ word, isActive, response, onResponse }) => {
   }
 
   return (
-    <div className={`flash-card ${isActive ? 'active' : ''}`}>
+    <div 
+      className={`flash-card ${isActive ? 'active' : ''}`}
+      style={style}
+    >
       <h2>{word.spanish}</h2>
-      <p className={`english ${isActive ? 'hidden' : ''}`}>{word.english}</p>
+      <p className={`english ${isActive ? 'hidden' : ''}`}>
+        {word.english}
+      </p>
       <div className="response-buttons">
         <button 
-          className={`response-button si ${response === true ? 'selected' : ''}`}
+          className={`response-button si ${response ? 'selected' : ''}`}
           onClick={() => handleResponse(true)}
         >
           Sí
