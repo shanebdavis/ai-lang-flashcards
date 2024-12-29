@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import FlashCard from './FlashCard'
 
-const PracticeFlashCards = ({ words }) => {
+const PracticeFlashCards = ({ words, onBack }) => {
   const [responses, setResponses] = useState({})
   const [visibleCards, setVisibleCards] = useState([words[0]])
 
@@ -17,23 +17,30 @@ const PracticeFlashCards = ({ words }) => {
   }
 
   return (
-    <div className="cards-container">
-      {visibleCards.map((word, index) => {
-        const invertIndex = visibleCards.length - index - 1
-        return (
-          <FlashCard
-            key={word.id}
-            word={word}
-            isActive={invertIndex === 0}
-            response={responses[word.id]}
-            onResponse={handleResponse}
-            style={{
-              bottom: `${250 * invertIndex - 20}px`
-            }}
-          />
-        )
-      })}
-    </div>
+    <>
+      <button className="back-button" onClick={onBack}>
+        ← Back
+      </button>
+      <div className="practice-flash-cards">
+        <div className="cards-container">
+          {visibleCards.map((word, index) => {
+            const invertIndex = visibleCards.length - index - 1
+            return (
+              <FlashCard
+                key={word.id}
+                word={word}
+                isActive={invertIndex === 0}
+                response={responses[word.id]}
+                onResponse={handleResponse}
+                style={{
+                  bottom: `${250 * invertIndex - 20}px`
+                }}
+              />
+            )
+          })}
+        </div>
+      </div>
+    </>
   )
 }
 
