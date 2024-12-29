@@ -3,7 +3,7 @@ import FlashCard from './FlashCard'
 
 const PracticeFlashCards = ({ words, onBack }) => {
   const [responses, setResponses] = useState({})
-  const [visibleCards, setVisibleCards] = useState([words[0]])
+  const [visibleCards, setVisibleCards] = useState(words ? [words[0]] : [])
 
   const addNewCard = () => 
     setVisibleCards(prev => [...prev, words[prev.length]])
@@ -15,6 +15,9 @@ const PracticeFlashCards = ({ words, onBack }) => {
       addNewCard()
     }
   }
+
+  // Don't render anything if we don't have words
+  if (!words?.length) return null
 
   return (
     <>
@@ -32,6 +35,8 @@ const PracticeFlashCards = ({ words, onBack }) => {
                 isActive={invertIndex === 0}
                 response={responses[word.id]}
                 onResponse={handleResponse}
+                cardNumber={index + 1}
+                totalCards={words.length}
                 style={{
                   bottom: `${250 * invertIndex - 20}px`
                 }}

@@ -1,4 +1,4 @@
-const FlashCard = ({ word, isActive, response, onResponse, style }) => {
+const FlashCard = ({ word, isActive, response, onResponse, style, cardNumber, totalCards }) => {
   const handleResponse = value => {
     if (isActive) {
       onResponse(word.id, value)
@@ -12,6 +12,7 @@ const FlashCard = ({ word, isActive, response, onResponse, style }) => {
       className={`flash-card ${isActive ? 'active' : ''}`}
       style={style}
     >
+      <div className="card-counter">{cardNumber}/{totalCards}</div>
       <h2>{word.spanish}</h2>
       <p className={`english ${isActive ? 'hidden' : ''}`}>
         {word.english}
