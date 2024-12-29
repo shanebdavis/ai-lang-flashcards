@@ -16,7 +16,7 @@ const ScoreCard = ({ stats, onReshuffle, onPracticeMissed }) => {
         >
           Reshuffle All
         </button>
-        {stats.missed > 0 && (
+        {stats.missed > 0 && stats.correct > 0 && (
           <button
             className="response-button practice-missed"
             onClick={onPracticeMissed}
