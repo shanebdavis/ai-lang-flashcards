@@ -1,3 +1,11 @@
+
+const typeToShort = {
+  'noun': 'n',
+  'verb': 'v',
+  'adjective': 'adj',
+  'adverb': 'adv',
+}
+
 const FlashCard = ({ word, isActive, response, onResponse, style, cardNumber, totalCards }) => {
   const handleResponse = value => {
     if (isActive) {
@@ -8,23 +16,23 @@ const FlashCard = ({ word, isActive, response, onResponse, style, cardNumber, to
   }
 
   return (
-    <div 
+    <div
       className={`flash-card ${isActive ? 'active' : ''}`}
       style={style}
     >
       <div className="card-counter">{cardNumber}/{totalCards}</div>
       <h2>{word.spanish}</h2>
       <p className={`english ${isActive ? 'hidden' : ''}`}>
-        {word.english}
+        {word.english} ({typeToShort[word.type]}. {word.dictionaryForm})
       </p>
       <div className="response-buttons">
-        <button 
+        <button
           className={`response-button si ${response ? 'selected' : ''}`}
           onClick={() => handleResponse(true)}
         >
           Sí
         </button>
-        <button 
+        <button
           className={`response-button no ${response === false ? 'selected' : ''}`}
           onClick={() => handleResponse(false)}
         >

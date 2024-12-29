@@ -141,6 +141,8 @@ html, body {
   --card-shadow: 0 -2px 10px rgba(0,0,0,0.1);
   --text-color: #000000;
   --text-muted: #666666;
+  --button-primary: #2196f3;
+  --button-secondary: #9c27b0;
 }
 
 /* Dark mode */
@@ -157,6 +159,8 @@ html, body {
     --card-shadow: 0 -4px 20px rgba(0,0,0,0.4);
     --text-color: #ffffff;
     --text-muted: #888888;
+    --button-primary: #1976d2;
+    --button-secondary: #7b1fa2;
   }
 
   /* Override root and body background colors */
@@ -245,5 +249,33 @@ html, body {
   font-size: 0.9em;
   color: var(--text-muted);
   opacity: 0.5;
+}
+
+/* Add these styles */
+.score-card {
+  text-align: center;
+}
+
+.score-stats {
+  /* margin: 20px 0 30px; */
+}
+
+.score-percent {
+  font-size: 3em;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.score-detail {
+  color: var(--text-muted);
+  margin-top: 10px;
+}
+
+.response-button.reshuffle {
+  background-color: var(--button-primary);
+}
+
+.response-button.practice-missed {
+  background-color: var(--button-secondary);
 }
 

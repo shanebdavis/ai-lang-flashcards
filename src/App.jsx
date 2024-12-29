@@ -4,17 +4,30 @@ import LevelSelect from './components/LevelSelect'
 import loadWords from './data/loadWords'
 import './App.css'
 
-const WORDS_PER_SESSION = 25
+const WORDS_PER_SESSION = 10
 
-const selectRandomWords = words => 
-  [...words]
-    .sort(() => Math.random() - 0.5)
-    .slice(0, WORDS_PER_SESSION)
+const randomSort = array => {
+  const newArray = [...array]
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+      ;[newArray[i], newArray[j]] = [newArray[j], newArray[i]]
+  }
+  return newArray
+}
+
+const selectRandomWords = words =>
+  randomSort(words).slice(0, WORDS_PER_SESSION)
 
 const App = () => {
   const [selectedLevel, setSelectedLevel] = useState(null)
   const [words, setWords] = useState(null)
   const [loading, setLoading] = useState(false)
+
+  const reshuffleAll = () =>
+    setWords(words => randomSort(words))
+
+  const reshuffleMissed = (missedWords) =>
+    setWords(randomSort(missedWords))
 
   useEffect(() => {
     if (selectedLevel) {
@@ -40,9 +53,11 @@ const App = () => {
         loading ? (
           <div className="loading">Loading words...</div>
         ) : (
-          <PracticeFlashCards 
-            words={words} 
-            onBack={() => setSelectedLevel(null)} 
+          <PracticeFlashCards
+            words={words}
+            reshuffleAll={reshuffleAll}
+            reshuffleMissed={reshuffleMissed}
+            onBack={() => setSelectedLevel(null)}
           />
         )
       ) : (

@@ -14,6 +14,8 @@ const loadWords = async (level) => {
             id: `${level}-${index}`,
             spanish: row.word,
             english: row.english,
+            dictionaryForm: row.dictionaryForm,
+            type: row.type,
             level: row.languageLevel
           }))
         resolve(words)
