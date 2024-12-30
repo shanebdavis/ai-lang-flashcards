@@ -9,7 +9,7 @@ Goals
 
 # Motivation
 
-I love DuoLingo, but why does every "card" have to be a test? Further, why do I need to switch between Spanish and English every card. I want to learn the same way kids do - by exposure. Where a DuoLingo lession is about 10 cards, I think I can make a compelling flashcard app that helps you study about 100 cards (words) with about the same amount of effort. Further, I have a guess that with AI we might be able to make the flashcards more interesting and engaging.
+I love DuoLingo, but why does every "card" have to be a test? Further, why do I need to switch between Spanish and English every card. I want to learn the same way kids do - by exposure in just one language. I don't want to focus on _translating_ between English and Spanish. I want to focus on _understanding_ the Spanish language. Where a DuoLingo lession is about 10 cards, I think I can make a compelling flashcard app that helps you study about 100 cards (words) with about the same amount of effort. Further, I have a guess that with AI we might be able to make the flashcards more interesting and engaging.
 
 # Spanish Data
 
