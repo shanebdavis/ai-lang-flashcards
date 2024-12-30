@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import FlashCard from './FlashCard'
-import ScoreCard from './ScoreCard'
+import { FlashCard } from './FlashCard'
+import { ScoreCard } from './ScoreCard'
 
-const PracticeFlashCards = ({ words, reshuffleAll, reshuffleMissed, onBack }) => {
+export const PracticeFlashCards = ({ words, reshuffleAll, reshuffleMissed, onBack }) => {
   const [responses, setResponses] = useState({})
   const [visibleCards, setVisibleCards] = useState(words ? [words[0]] : [])
 
@@ -66,5 +66,3 @@ const PracticeFlashCards = ({ words, reshuffleAll, reshuffleMissed, onBack }) =>
     </>
   )
 }
-
-export default PracticeFlashCards 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import PracticeFlashCards from './components/PracticeFlashCards'
-import LevelSelect from './components/LevelSelect'
+import { PracticeFlashCards } from './components/PracticeFlashCards'
+import { LevelSelect } from './components/LevelSelect'
 import loadWords from './data/loadWords'
 import './App.css'
 
@@ -18,7 +18,7 @@ const randomSort = array => {
 const selectRandomWords = words =>
   randomSort(words).slice(0, WORDS_PER_SESSION)
 
-const App = () => {
+export const App = () => {
   const [selectedLevel, setSelectedLevel] = useState(null)
   const [words, setWords] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -66,5 +66,3 @@ const App = () => {
     </div>
   )
 }
-
-export default App 

@@ -6,7 +6,7 @@ const typeToShort = {
   'adverb': 'adv',
 }
 
-const FlashCard = ({ word, isActive, response, onResponse, style, cardNumber, totalCards }) => {
+export const FlashCard = ({ word, isActive, response, onResponse, style, cardNumber, totalCards }) => {
   const handleResponse = value => {
     if (isActive) {
       onResponse(word.id, value)
@@ -42,5 +42,3 @@ const FlashCard = ({ word, isActive, response, onResponse, style, cardNumber, to
     </div>
   )
 }
-
-export default FlashCard 

@@ -1,4 +1,4 @@
-const ScoreCard = ({ stats, onReshuffle, onPracticeMissed }) => {
+export const ScoreCard = ({ stats, onReshuffle, onPracticeMissed }) => {
   const percentKnown = Math.round((stats.correct / stats.total) * 100)
 
   return (
@@ -28,5 +28,3 @@ const ScoreCard = ({ stats, onReshuffle, onPracticeMissed }) => {
     </div>
   )
 }
-
-export default ScoreCard 
