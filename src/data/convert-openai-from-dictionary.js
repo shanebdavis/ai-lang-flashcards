@@ -10,7 +10,7 @@ const openai = new OpenAi({
 });
 
 const outputFields = ["gradeLevel", "cefrLevel", "countryInUsage"];
-const inputFile = 'dictionary1000.csv';
+const inputFile = 'dictionary.csv';
 const outputFile = 'dictionary-enhanced.csv';
 const BATCH_SIZE = 100;
 
@@ -58,6 +58,18 @@ English translation: ${translation}`
   return JSON.parse(response.choices[0].message.content);
 }
 
+const getResponseWithRetry = async (word, translation, gender, pos, retries = 3) => {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      return await getResponse(word, translation, gender, pos);
+    } catch (error) {
+      if (attempt === retries) throw error;
+      console.error(`Attempt ${attempt} failed for word ${word}:`, error);
+      await new Promise(resolve => setTimeout(resolve, 1000 * attempt)); // Exponential backoff
+    }
+  }
+}
+
 const escapeCsvField = field => {
   if (field == null) return ''
   const str = String(field)
@@ -81,8 +93,8 @@ const processBatch = async batch => Promise.all(
 
       let parsedResponse = {}
       try {
-        parsedResponse = await getResponse(spanishWord, translation, gender, pos)
-        console.log('Success:', spanishWord, parsedResponse) // Log successful responses
+        parsedResponse = await getResponseWithRetry(spanishWord, translation, gender, pos)
+        // console.log('Success:', spanishWord, parsedResponse)
       } catch (error) {
         console.error('OpenAI Error for word:', spanishWord, error)
         outputFields.forEach(field => parsedResponse[field] = 'ERROR')
