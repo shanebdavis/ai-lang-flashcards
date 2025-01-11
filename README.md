@@ -19,3 +19,4 @@ Currently I'm working with data from [FrequencyWords](https://github.com/hermitd
 
 - [words-all.csv](src/data/words-all.csv)
 - Processed with ChatGPT: [convert-openai.js](src/data/convert-openai.js)
+- [github/SpanishDictionaryCreator](https://github.com/nhershy/SpanishDictionaryCreator)
