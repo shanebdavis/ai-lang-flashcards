@@ -279,3 +279,262 @@ html, body {
   background-color: var(--button-secondary);
 }
 
+.tag-selector {
+  background: var(--bg-secondary);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border-color);
+}
+
+.tag-selectors {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--bg-primary);
+  grid-template-columns: repeat(4, 1fr); /* Default to 4 columns */
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1200px) {
+  .tag-selectors {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on medium screens */
+  }
+}
+
+@media (max-width: 900px) {
+  .tag-selectors {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+  }
+}
+
+@media (max-width: 600px) {
+  .tag-selectors {
+    grid-template-columns: 1fr; /* Single column on phones */
+    padding: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  .tag-selector {
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .tag-buttons {
+    gap: 0.4rem;
+  }
+
+  .tag-button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+.tag-selector h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #666;
+}
+
+.tag-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag-button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tag-button:hover {
+  background: #f0f0f0;
+}
+
+.tag-button.selected {
+  background: #007bff;
+  color: white;
+  border-color: #0056b3;
+}
+
+.stats {
+  margin: 1rem 0;
+  padding: 0.5rem;
+  background: #e9ecef;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.session-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  max-width: 800px;
+}
+
+.start-session-button {
+  flex: 1;
+  max-width: 250px;
+  padding: 1rem;
+  font-size: 1.1rem;
+  color: white;
+  background: var(--button-primary);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.start-session-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background: var(--button-primary-hover, #1565c0);
+}
+
+.start-session-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.start-session-button .word-count {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.examples {
+  margin-top: 0.5rem;
+  font-style: italic;
+  color: #666;
+}
+
+.key-hint {
+  opacity: 0.6;
+  font-size: 0.8em;
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .key-hint {
+    display: none;
+  }
+}
+
+/* Add theme variables at the root */
+:root {
+  /* Light theme (default) */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #e9ecef;
+  --text-primary: #212529;
+  --text-secondary: #666;
+  --text-muted: #6c757d;
+  --button-primary: #007bff;
+  --button-primary-hover: #1565c0;
+  --button-secondary: #f0f0f0;
+  --button-secondary-hover: #e0e0e0;
+  --border-color: #dee2e6;
+  --tag-selected-bg: #007bff;
+  --tag-selected-text: white;
+  --tag-hover: #f0f0f0;
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --bg-tertiary: #333333;
+    --text-primary: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --text-muted: #888888;
+    --button-primary: #0d6efd;
+    --button-primary-hover: #0b5ed7;
+    --button-secondary: #404040;
+    --button-secondary-hover: #4a4a4a;
+    --border-color: #404040;
+    --tag-selected-bg: #0d6efd;
+    --tag-selected-text: white;
+    --tag-hover: #404040;
+  }
+}
+
+/* Update existing styles to use variables */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.app {
+  background-color: var(--bg-primary);
+}
+
+h1 {
+  color: var(--text-primary);
+}
+
+.tag-selector h3 {
+  color: var(--text-primary);
+}
+
+.tag-button {
+  background: var(--button-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.tag-button:hover {
+  background: var(--tag-hover);
+}
+
+.tag-button.selected {
+  background: var(--tag-selected-bg);
+  color: var(--tag-selected-text);
+  border-color: var(--tag-selected-bg);
+}
+
+.stats {
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+}
+
+.examples {
+  color: var(--text-secondary);
+}
+
+.start-session-button {
+  color: var(--tag-selected-text);
+  background: var(--button-primary);
+}
+
+.start-session-button:hover:not(:disabled) {
+  background: var(--button-primary-hover);
+}
+
+.start-session-button:disabled {
+  opacity: 0.5;
+}
+
+.start-session-button .word-count {
+  color: var(--tag-selected-text);
+}
+
+.key-hint {
+  color: var(--text-muted);
+}
+
+/* Add smooth transitions */
+body, .app, .tag-button, .stats, .start-session-button {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+

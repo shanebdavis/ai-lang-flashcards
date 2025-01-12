@@ -33,6 +33,8 @@ I'm going to provide you with a Spanish word and its English translation. Help c
 "countryInUsage": list one or more countries where this word is commonly used. e.g. Spain, Mexico, Chile, Argentina, etc.
 }
 
+Note: For part of speech {p}, please use {phrase} instead as it's more clear.
+
 Base your assessment on:
 - Word complexity
 - How early children typically learn this word

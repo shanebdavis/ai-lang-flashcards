@@ -1,10 +1,5 @@
-
-const typeToShort = {
-  'noun': 'n',
-  'verb': 'v',
-  'adjective': 'adj',
-  'adverb': 'adv',
-}
+import { useEffect } from 'react'
+import { POS_TO_FULL_POS } from '../data/loadWords'
 
 export const FlashCard = ({ word, isActive, response, onResponse, style, cardNumber, totalCards }) => {
   const handleResponse = value => {
@@ -15,6 +10,28 @@ export const FlashCard = ({ word, isActive, response, onResponse, style, cardNum
     }
   }
 
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (!isActive) return
+
+      switch (event.key) {
+        case 's':
+        case 'ArrowLeft':
+          handleResponse(true)
+          break
+        case 'n':
+        case 'ArrowRight':
+          handleResponse(false)
+          break
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyPress)
+    return () => window.removeEventListener('keydown', handleKeyPress)
+  }, [isActive, word.id])
+
+  const fullType = POS_TO_FULL_POS[word.type?.toLowerCase()] || word.type || ''
+
   return (
     <div
       className={`flash-card ${isActive ? 'active' : ''}`}
@@ -23,20 +40,20 @@ export const FlashCard = ({ word, isActive, response, onResponse, style, cardNum
       <div className="card-counter">{cardNumber}/{totalCards}</div>
       <h2>{word.spanish}</h2>
       <p className={`english ${isActive ? 'hidden' : ''}`}>
-        {word.english} ({typeToShort[word.type]}. {word.dictionaryForm})
+        {word.english} {fullType && `(${fullType})`}
       </p>
       <div className="response-buttons">
         <button
           className={`response-button si ${response ? 'selected' : ''}`}
           onClick={() => handleResponse(true)}
         >
-          Sí
+          Sí <span className="key-hint">(s ←)</span>
         </button>
         <button
           className={`response-button no ${response === false ? 'selected' : ''}`}
           onClick={() => handleResponse(false)}
         >
-          No
+          No <span className="key-hint">(n →)</span>
         </button>
       </div>
     </div>
